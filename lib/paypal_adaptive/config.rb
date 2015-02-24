@@ -78,11 +78,11 @@ module PaypalAdaptive
     end
   end
 
-  def self.config(env = nil)
+  def self.config(env = nil, config_override={})
     env ||= default_env_for_config
     raise "Please provide an environment" unless env
     @configs ||= Hash.new
-    @configs[env] ||= Config.new(env)
+    @configs[env] ||= Config.new(env, config_override)
   end
 
   private
