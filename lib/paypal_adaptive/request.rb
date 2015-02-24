@@ -7,9 +7,9 @@ module PaypalAdaptive
   end
 
   class Request
-    def initialize(env = nil)
+    def initialize(env = nil, config_override={})
       @env = env
-      config = PaypalAdaptive.config(env)
+      config = PaypalAdaptive.config(env, config_override)
       @api_base_url = config.api_base_url
       @headers = config.headers
       @ssl_cert_path = config.ssl_cert_path
@@ -74,7 +74,7 @@ module PaypalAdaptive
     def get_verified_status(data)
       wrap_post(data, "/AdaptiveAccounts/GetVerifiedStatus")
     end
-    
+
     def get_funding_plans(data)
       wrap_post(data, "/AdaptivePayments/GetFundingPlans")
     end
